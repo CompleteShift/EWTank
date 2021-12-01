@@ -7,6 +7,7 @@ I can make it more verbose if I want to
 python is probably best because it keeps it simple for prototyping
 just use python
 java and c# will add a lot of complexity I don't want
+never mind I'm more familiar with Java let's just do that
 
 alright how do I want this to work
 I want the program to iterate through a timeline
@@ -19,7 +20,16 @@ this timeline has events in it
 events can have many things
 - a name
 - a potency
-- 
+
+okay let's dial down on what events actually are
+They must have a name
+they must have a time
+they can have a potency
+they can have a healing potency
+they can regenerate mana
+they can add a shell
+they can add beast gauge
+they can add blood gauge
 
 Can I use the same simulation class for all 4 tanks?
 They all have vastly different things
@@ -29,3 +39,5 @@ they all have timelines
 simulation should be some sort of interface I guess
 fuck that for now
 separate classes
+
+Is the timeline anything other than a list?  Who knows.
