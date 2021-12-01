@@ -1,0 +1,31 @@
+alright lemme just type for a bit
+this is quickly becoming more complex than I want
+I want to simplify this
+excel requires a lot of thinking I don't want to do
+a programming language may allow me to automate a lot of the thinking
+I can make it more verbose if I want to
+python is probably best because it keeps it simple for prototyping
+just use python
+java and c# will add a lot of complexity I don't want
+
+alright how do I want this to work
+I want the program to iterate through a timeline
+and show a bunch of variables for each point in the timeline
+I can have it print those variables after each event in the timeline
+I want the events in the timeline to happen in a specific order
+
+A simulation has a timeline
+this timeline has events in it
+events can have many things
+- a name
+- a potency
+- 
+
+Can I use the same simulation class for all 4 tanks?
+They all have vastly different things
+I should probably create a separate class for each simulation
+simulations will have some similarities though
+they all have timelines
+simulation should be some sort of interface I guess
+fuck that for now
+separate classes
