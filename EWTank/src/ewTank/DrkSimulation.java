@@ -89,7 +89,6 @@ public class DrkSimulation {
 			String output = "";
 			output += "Time: " + event.getTime();
 			output += "\tName: " + event.getName();
-			output += "\tTotal Potency: " + totalPotency;
 			if (event.getTime().compareTo(new BigDecimal(0)) > 0) {
 				output += "\tPPS: " + new BigDecimal(totalPotency).divide(event.getTime(), RoundingMode.HALF_UP);
 			}
@@ -122,7 +121,7 @@ public class DrkSimulation {
 
 	private Event bloodspiller() {
 		Event event = new Event("Bloodspiller");
-		event.setPotency(600);
+		event.setPotency(500);
 		event.setBloodGauge(-50);
 		return event;
 	}
