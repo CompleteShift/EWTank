@@ -11,6 +11,7 @@ public class Event implements Comparable<Event> {
 	private int mana = 0;
 	private int shell = 0;
 	private int beastGauge = 0;
+	private int bloodGauge = 0;
 
 	public Event(String name) {
 		this.name = name;
@@ -89,6 +90,14 @@ public class Event implements Comparable<Event> {
 
 	public void setBeastGauge(int beastGauge) {
 		this.beastGauge = beastGauge;
+	}
+	
+	public int getBloodGauge() {
+		return bloodGauge;
+	}
+
+	public void setBloodGauge(int bloodGauge) {
+		this.bloodGauge = bloodGauge;
 	}
 
 	public int compareTo(Event o) {

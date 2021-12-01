@@ -23,12 +23,52 @@ public class DrkSimulation {
 		gcd(syphonStrike());
 		gcd(souleater(), livingShadow());
 		gcd(hardSlash(), saltedEarth(), delirium());
-		gcd(bloodspiller(), edgeOfShadow(true), shadowbringer());
-		gcd(bloodspiller(), edgeOfShadow(), shadowbringer());
-		gcd(bloodspiller(), edgeOfShadow(), saltAndDarkness());
+		gcd(bloodspiller(true), edgeOfShadow(true), shadowbringer());
+		gcd(bloodspiller(true), edgeOfShadow(), shadowbringer());
+		gcd(bloodspiller(true), edgeOfShadow(), saltAndDarkness());
 		gcd(syphonStrike(), edgeOfShadow(), carveAndSpit());
 		gcd(souleater(), plunge(), abyssalDrain());
 		gcd(hardSlash(), plunge());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(bloodspiller());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(bloodspiller());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(hardSlash());
+		gcd(syphonStrike(), theBlackestNight(), bloodWeapon());
+		gcd(souleater());
+		gcd(bloodspiller());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater(), edgeOfShadow(true), delirium());
+		gcd(bloodspiller(true), edgeOfShadow());
+		gcd(bloodspiller(true), edgeOfShadow());
+		gcd(bloodspiller(true), edgeOfShadow());
+		gcd(bloodspiller(), carveAndSpit());
+		gcd(hardSlash(), abyssalDrain());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
+		gcd(bloodspiller());
+		gcd(hardSlash());
+		gcd(syphonStrike());
+		gcd(souleater());
 		
 		addManaTicks();
 	}
@@ -36,6 +76,7 @@ public class DrkSimulation {
 	public void runSim() {
 		int totalPotency = 0;
 		int totalMana = 10000;
+		int totalBlood = 0;
 		
 		timeline.sort(null);;
 
@@ -43,15 +84,17 @@ public class DrkSimulation {
 			// System.out.println(event);
 			totalPotency += event.getPotency();
 			totalMana += event.getMana();
+			totalBlood += event.getBloodGauge();
 
 			String output = "";
 			output += "Time: " + event.getTime();
 			output += "\tName: " + event.getName();
 			output += "\tTotal Potency: " + totalPotency;
-			if (!event.getTime().equals(new BigDecimal("0.0"))) {
+			if (event.getTime().compareTo(new BigDecimal(0)) > 0) {
 				output += "\tPPS: " + new BigDecimal(totalPotency).divide(event.getTime(), RoundingMode.HALF_UP);
 			}
 			output += "\tMana: " + totalMana;
+			output += "\tBlood: " + totalBlood;
 			System.out.println(output);
 		}
 	}
@@ -73,12 +116,22 @@ public class DrkSimulation {
 		Event event = new Event("Souleater");
 		event.setPotency(330);
 		event.setHealPotency(300);
+		event.setBloodGauge(20);
 		return event;
 	}
 
 	private Event bloodspiller() {
 		Event event = new Event("Bloodspiller");
 		event.setPotency(600);
+		event.setBloodGauge(-50);
+		return event;
+	}
+	
+	private Event bloodspiller(boolean free)
+	{
+		Event event = bloodspiller();
+		if (free)
+			event.setBloodGauge(0);
 		return event;
 	}
 
@@ -91,7 +144,7 @@ public class DrkSimulation {
 
 	private Event edgeOfShadow(boolean free) {
 		Event event = edgeOfShadow();
-		if (free == true)
+		if (free)
 			event.setMana(0);
 		return event;
 	}
@@ -131,6 +184,7 @@ public class DrkSimulation {
 	private Event livingShadow() {
 		Event event = new Event("Living Shadow");
 		event.setPotency(1470);
+		event.setBloodGauge(-50);
 		return event;
 	}
 
@@ -154,6 +208,7 @@ public class DrkSimulation {
 			Event bwEvent = new Event("Blood GCD Mana " + i);
 			bwEvent.setTime(bwTime);
 			bwEvent.setMana(600);
+			bwEvent.setBloodGauge(10);;
 			timeline.add(bwEvent);
 			bwTime = bwTime.add(new BigDecimal("2.4"));
 		}
@@ -175,7 +230,13 @@ public class DrkSimulation {
 	}
 	
 	private void addManaTicks() {
-		//TODO: Add mana ticks
+		for (int i = 0; i < 120; i += 3)
+		{
+			Event mEvent = new Event("Mana tick " + i);
+			mEvent.setTime(new BigDecimal(i));
+			mEvent.setMana(200);
+			timeline.add(mEvent);
+		}
 	}
 
 	private void gcd() {
